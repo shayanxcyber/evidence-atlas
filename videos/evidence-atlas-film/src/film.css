@@ -1,0 +1,437 @@
+.film {
+  --signal: #6f8c51;
+  --mono: "IBM Plex Mono", monospace;
+  --ink: #2d3924;
+  font-family: "Geist", sans-serif;
+  background: #f3f5eb;
+  color: #35462a;
+  overflow: hidden;
+}
+.film *,
+.film *::before,
+.film *::after {
+  box-sizing: border-box;
+  animation: none !important;
+  transition: none !important;
+}
+.film button {
+  pointer-events: none;
+}
+.film-grain {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#61764012 0.65px, transparent 0.65px);
+  background-size: 4px 4px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.film-running-head,
+.film-foot {
+  position: absolute;
+  left: 135px;
+  right: 135px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.film-running-head {
+  top: 65px;
+  font-size: 20px;
+  border-bottom: 1px solid #cdd8bc;
+  padding-bottom: 23px;
+}
+.film-running-head > span:first-child {
+  font:
+    30px "Instrument Serif",
+    serif;
+}
+.film-running-head > span:last-child {
+  font: 13px var(--mono);
+  color: #869872;
+}
+.film-foot {
+  bottom: 44px;
+  font: 13px var(--mono);
+  color: #899975;
+}
+.film-headline {
+  position: absolute;
+}
+.film-eyebrow {
+  display: block;
+  font:
+    23px "Geist",
+    sans-serif;
+  color: #7c9067;
+}
+.film-headline h1 {
+  font:
+    114px/0.95 "Instrument Serif",
+    serif;
+  letter-spacing: -0.035em;
+  margin: 25px 0;
+  font-weight: 400;
+}
+.film-headline em {
+  font-style: normal;
+  color: #83956b;
+}
+.film-thread {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.film-tile,
+.film-dossier,
+.film-margin,
+.film-question-pill,
+.film-answer,
+.film-source,
+.film-citation-carrier,
+.film-annotation,
+.film-versions,
+.film-version-callout,
+.film-version-arrow,
+.film-metrics {
+  position: absolute;
+}
+.film-tile .evidence-tile {
+  border-radius: 16px;
+  padding: 27px 30px;
+  box-shadow: 0 10px 30px #465c370b;
+}
+.film-tile .tile-top code {
+  font-size: 19px;
+}
+.film-tile .tile-top svg {
+  width: 23px;
+  height: 23px;
+}
+.film-tile .tile-relation {
+  font-size: 17px;
+}
+.film-tile .evidence-tile > strong {
+  font-size: 30px;
+  margin: 22px 0;
+}
+.film-tile .tile-bottom {
+  font-size: 16px;
+}
+.film-tile .tile-bottom svg {
+  width: 22px;
+  height: 22px;
+}
+.film-dossier .case-dossier {
+  margin: 0;
+  padding: 45px;
+  gap: 26px;
+  border-radius: 4px 22px 22px 22px;
+  box-shadow: 0 25px 70px #465c3720;
+}
+.film-dossier .case-dossier:before {
+  top: -20px;
+  width: 210px;
+  height: 20px;
+  border-radius: 14px 14px 0 0;
+}
+.film-dossier .dossier-copy > small {
+  font-size: 13px;
+}
+.film-dossier .dossier-copy > strong {
+  font-size: 58px;
+  margin: 20px 0;
+}
+.film-dossier .dossier-copy > span {
+  font-size: 16px;
+}
+.film-dossier .dossier-spine {
+  font-size: 14px;
+  padding-left: 22px;
+}
+.film-dossier .dossier-contrast {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.film-dossier .dossier-contrast > span + span {
+  border-left: 0;
+  border-top: 1px solid #c3ceb1;
+  padding: 20px 0 0;
+}
+.film-dossier .dossier-contrast small {
+  font-size: 13px;
+}
+.film-dossier .dossier-contrast strong {
+  font-size: 52px;
+}
+.film-dossier .dossier-contrast strong span {
+  font-size: 16px;
+}
+.film-dossier .dossier-open {
+  width: 25px;
+  height: 25px;
+}
+.film-margin {
+  color: #81936a;
+  font:
+    35px/1.25 "Instrument Serif",
+    serif;
+}
+.film-question-pill {
+  padding: 27px 32px;
+  background: #3f5631;
+  color: #f5f7ee;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  font-size: 30px;
+  box-shadow: 0 10px 30px #465c3718;
+}
+.film-question-pill > span:first-child {
+  font: 20px var(--mono);
+  color: #b4c797;
+}
+.film-answer,
+.film-source {
+  border: 1px solid #c6d6b2;
+  border-radius: 17px;
+  background: #fffef9;
+  box-shadow: 0 16px 50px #465c3712;
+  overflow: hidden;
+}
+.film-pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 21px 26px;
+  background: #e9f0df;
+  color: #6a8354;
+  font-size: 20px;
+  border-bottom: 1px solid #d1dfc0;
+}
+.film-pane-header > span {
+  font: 12px var(--mono);
+  color: #91a579;
+}
+.film-answer .answer-body {
+  padding: 10px 28px 24px;
+}
+.film-answer .answer-body p {
+  font-size: 35px;
+  line-height: 1.5;
+}
+.film-answer .citation {
+  font-size: 20px;
+  padding: 5px 9px;
+  vertical-align: 3px;
+}
+.film-source .source-lines {
+  border: 0;
+  border-radius: 0;
+}
+.film-source .source-lines > div {
+  grid-template-columns: 50px minmax(0, 1fr);
+}
+.film-source .source-lines > div > span {
+  font-size: 14px;
+  padding: 14px 10px;
+}
+.film-source .source-lines p {
+  font-size: 21px;
+  line-height: 1.4;
+  padding: 10px 20px;
+}
+.film-annotation {
+  font-size: 24px;
+  color: #71885a;
+}
+.film-annotation > span {
+  padding-left: 30px;
+}
+.film-citation-carrier {
+  z-index: 3;
+  width: 64px;
+  height: 48px;
+}
+.film-versions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.film-versions section {
+  background: #fffef9;
+  border: 1px solid #ccdab8;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 44px #465c3710;
+}
+.film-versions header {
+  background: #e9f0de;
+  border-bottom: 1px solid #d3dfc2;
+  color: #65814e;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px;
+  font-size: 22px;
+}
+.film-versions header code {
+  margin-left: auto;
+  font: 16px var(--mono);
+  color: #8ba674;
+}
+.film-versions .comparison-lines > div {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  border-bottom: 1px solid #eaf0e1;
+}
+.film-versions .comparison-lines span {
+  font: 13px var(--mono);
+  padding: 12px 8px;
+  color: #a2b28b;
+  text-align: right;
+}
+.film-versions .comparison-lines code {
+  font:
+    19px/1.6 "Geist",
+    sans-serif;
+  padding: 8px 18px;
+  white-space: pre-wrap;
+  color: #5b7046;
+}
+.film-versions .comparison-lines > div[data-changed] {
+  background: #e4edda;
+}
+.film-versions .comparison-lines b {
+  display: none;
+}
+.film-version-callout {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+}
+.film-version-callout > strong {
+  font:
+    75px "Instrument Serif",
+    serif;
+}
+.film-version-callout > span {
+  font-size: 18px;
+  color: #8b9d74;
+}
+.film-version-arrow {
+  font:
+    75px "Instrument Serif",
+    serif;
+  color: #a2b589;
+}
+.film-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #cadbb5;
+  border-radius: 16px;
+  background: #fffef9;
+}
+.film-metrics > div {
+  padding: 30px 40px;
+}
+.film-metrics > div + div {
+  border-left: 1px solid #dde7d0;
+}
+.film-metrics .eyebrow {
+  display: block;
+  font-size: 19px;
+  color: #8b9d74;
+}
+.film-metrics strong {
+  display: block;
+  font:
+    112px "Instrument Serif",
+    serif;
+  margin: 14px 0;
+}
+.film-metrics p {
+  font-size: 19px;
+  color: #8b9d74;
+  margin: 0;
+}
+.film-finish {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.film-finish svg {
+  width: 110px;
+  height: 110px;
+  color: #465c37;
+}
+.film-finish h1 {
+  font:
+    140px "Instrument Serif",
+    serif;
+  letter-spacing: -0.03em;
+  margin: 30px 0 5px;
+}
+.film-finish p {
+  font-size: 28px;
+  color: #859871;
+}
+
+.film-assay .retrieval-assay {
+  margin: 0;
+  padding: 24px 30px;
+}
+.film-assay .assay-heading {
+  font-size: 15px;
+}
+.film-assay .assay-heading > span:last-child {
+  font-size: 16px;
+}
+.film-assay .assay-strip {
+  gap: 13px;
+  margin: 20px 0 15px;
+}
+.film-assay .assay-strip > button {
+  font-size: 14px;
+  padding: 15px 8px 9px;
+}
+.film-assay .assay-marks {
+  height: 29px;
+}
+.film-assay .assay-marks i {
+  width: 11px;
+  height: 29px;
+}
+.film-assay .assay-legend {
+  font-size: 14px;
+}
+.film-headline h1 {
+  font-size: 104px;
+}
+.film-annotation {
+  font-size: 26px;
+}
+.film-source .source-lines {
+  padding: 10px 0;
+}
+.film-source .source-lines > div {
+  padding: 0;
+}
+
+.film-citation-carrier .citation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 19px;
+  padding: 4px 8px;
+  box-shadow: 0 6px 16px #465c3719;
+}

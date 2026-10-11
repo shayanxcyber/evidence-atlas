@@ -1,0 +1,14 @@
+[
+  {"id":"Q01","question":"Why did the burst saturate the queue?","expected_sources":["incident-review.md"]},
+  {"id":"Q02","question":"What was the steady state gateway p95 latency?","expected_sources":["load-test.md"]},
+  {"id":"Q03","question":"How many delivery attempts are allowed?","expected_sources":["retry-policy.md"]},
+  {"id":"Q04","question":"When should the operator pause rollout?","expected_sources":["rollout-checklist.md","incident-review.md"]},
+  {"id":"Q05","question":"Where are worker access tokens stored?","expected_sources":["security-review.md"]},
+  {"id":"Q06","question":"What happened during the worker outage recovery test?","expected_sources":["worker-outage.md"]},
+  {"id":"Q07","question":"What is the tenant concurrency budget?","expected_sources":["architecture.md"]},
+  {"id":"Q08","question":"Which retry status codes are transient failures?","expected_sources":["retry-policy.md"]},
+  {"id":"Q09","question":"What is new in release 2.4?","expected_sources":["release-notes.md"]},
+  {"id":"Q10","question":"How long is delivery metadata retained?","expected_sources":["security-review.md"]},
+  {"id":"Q11","question":"Why is a healthy gateway insufficient for readiness?","expected_sources":["rollout-checklist.md","incident-review.md"]},
+  {"id":"Q12","question":"Did the load test cover downstream outages?","expected_sources":["load-test.md"]}
+]

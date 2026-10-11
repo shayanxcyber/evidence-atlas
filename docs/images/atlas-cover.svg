@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+<title id="title">Evidence Atlas — Follow the source.</title>
+<desc id="desc">Paper and olive case-file cover with linked source records and a citation trail.</desc>
+<rect width="1280" height="360" fill="#f4f5ee"/>
+<path d="M48 73 63 43h6l15 30h-9L66 54l-9 19H48Z" fill="#465c37"/>
+<path d="M60 69h12" stroke="#465c37" stroke-width="4"/>
+<circle cx="66" cy="80" r="3" fill="#a84f32"/>
+<text x="102" y="65" fill="#465c37" font-family="Arial, sans-serif" font-size="20" letter-spacing="3">EVIDENCE ATLAS</text>
+<text x="49" y="185" fill="#253024" font-family="Georgia, serif" font-size="76">Follow the source.</text>
+<text x="52" y="231" fill="#576052" font-family="Arial, sans-serif" font-size="21">Changing documents. Conflicting evidence. An inspectable trail.</text>
+<path d="M52 280H752" stroke="#cfd5c7"/>
+<text x="52" y="316" fill="#465c37" font-family="monospace" font-size="14" letter-spacing="2">ASK → TRACE → COMPARE → DECIDE</text>
+<path d="M929 108C888 108 875 155 929 155M1092 155C1155 155 1155 225 1092 225" fill="none" stroke="#9baa7a" stroke-width="2"/>
+<rect x="939" y="67" width="224" height="78" rx="4" fill="#e9ede1" stroke="#c6cfba"/>
+<text x="959" y="96" fill="#465c37" font-family="monospace" font-size="13">S1 · RETAINED SOURCE</text>
+<path d="M960 114h160m-160 12h113" stroke="#9aa88b" stroke-width="2"/>
+<rect x="841" y="151" width="224" height="78" rx="4" fill="#f8f9f3" stroke="#c6cfba"/>
+<text x="861" y="180" fill="#465c37" font-family="monospace" font-size="13">VERSION · ORIGINAL LINES</text>
+<path d="M862 198h160m-160 12h128" stroke="#9aa88b" stroke-width="2"/>
+<rect x="939" y="235" width="224" height="58" rx="4" fill="#465c37"/>
+<text x="959" y="270" fill="#f4f5ee" font-family="monospace" font-size="13">CONCLUSION + EVIDENCE</text>
+</svg>

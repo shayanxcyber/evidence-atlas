@@ -1,0 +1,650 @@
+{
+  "k": 3,
+  "corpus_fingerprint": "6f1ffa382c84502ab66acbee8550e8969d640878a58eb89fc296b0883f8283a3",
+  "suite_sha256": "10cc3b9b62389da9bed21465143c10285b0106af59115d65f0d715dd4ff5cdb7",
+  "cases": [
+    {
+      "id": "Q01",
+      "question": "Why did the burst saturate the queue?",
+      "expected_sources": [
+        "incident-review.md"
+      ],
+      "found_sources": [
+        "incident-review.md",
+        "rollout-checklist.md",
+        "release-notes.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.299,
+      "hits": [
+        {
+          "id": "c_67bffb36dd9a39a5ce3da8bb",
+          "version_id": "v_135ee486897173e1a782578e",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Burst saturation incident review\n\nFictional engineering fixture. Incident IR-08, release 2.4.\n\nA burst of 4,000 events per second from one tenant saturated the dispatch queue.\nQueue depth reached 18,000 events within 90 seconds.\nThe gateway continued accepting events while dispatch p95 latency rose to 12 seconds.\nThe tenant concurrency budget was enforced, but the shared retry scheduler became congested.\nThe overload guard incorrectly used gateway latency instead of queue age.\n\n## Corrective decision\nPause the full rollout until the overload guard uses oldest-event age.\nKeep the 10 percent canary active with the burst traffic generator disabled.\nRepeat the burst test after the scheduler fairness patch and overload guard are deployed.\nPassing the steady-state load test does not satisfy the burst acceptance gate.\n",
+          "document_id": "d_84e88f2d8c9fcc0fc90891a5",
+          "sha256": "ea76bee1f97e85ac2a053416e148a6fcbbe67c9aa0855feaf6e77f1d6a54c9cf",
+          "title": "incident-review.md",
+          "score": -1.9144015307508182,
+          "label": "S1"
+        },
+        {
+          "id": "c_abae7dc1fee59d67ced5d8bd",
+          "version_id": "v_c68bf1dcb16a05f3d6104d4d",
+          "start_line": 13,
+          "end_line": 16,
+          "body": "A green gateway health probe alone cannot establish dispatch readiness.\nThe release approver needs a signed checklist and links to all three test reports.\nThe burst saturation gate is currently open, according to incident IR-08.\n",
+          "document_id": "d_c0eb6866701d7150654dc92f",
+          "sha256": "1b41aa1d61f790745cdc59b541a5226b739ab0723207d0a2cf8bf4886731d559",
+          "title": "rollout-checklist.md",
+          "score": -1.5964349173415917,
+          "label": "S2"
+        },
+        {
+          "id": "c_cea48f88957ab24ac62f5b71",
+          "version_id": "v_cb8582bc1804749e1f1dd1c7",
+          "start_line": 1,
+          "end_line": 15,
+          "body": "# Release 2.4 notes\n\nFictional engineering fixture. Aster Relay release 2.4.\n\nRelease 2.4 introduces per-tenant dispatch concurrency budgets and receipt tracing.\nThe gateway rejects payloads larger than 256 KiB before they reach the queue.\nWorker retry delays now honor bounded Retry-After hints.\nThe delivery ledger distinguishes confirmed receipts from ambiguous outcomes.\n\n## Known issue\nThe overload guard can remain green during dispatch queue saturation.\nIncident IR-08 tracks the oldest-event-age guard and scheduler fairness work.\nThe release remains at the 10 percent canary until the burst acceptance gate passes.\nRelease notes summarize changes; test reports contain the scenario-specific evidence.\n",
+          "document_id": "d_82200ce47fa528129da57d89",
+          "sha256": "0b0068751087525e085956deea8e8a7b830dd5d53c06893a211f70404124c2f6",
+          "title": "release-notes.md",
+          "score": -1.4037608364665934,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q02",
+      "question": "What was the steady state gateway p95 latency?",
+      "expected_sources": [
+        "load-test.md"
+      ],
+      "found_sources": [
+        "load-test.md",
+        "incident-review.md",
+        "rollout-checklist.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.12,
+      "hits": [
+        {
+          "id": "c_775914183488c4457fdc7e07",
+          "version_id": "v_872ba477ba2eb3c6eedcd7cd",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Steady-state load test\n\nFictional engineering fixture. Run LT-24, release 2.4.\n\nThe steady-state test delivered 600 events per second for 30 minutes.\nThe workload used 16 tenants, uniform 8 KiB payloads, and a 20 ms worker response delay.\nObserved gateway p95 latency was 43 ms; dispatch p95 latency was 118 ms.\nThe acceptance limits were 75 ms for gateway p95 and 200 ms for dispatch p95.\nThe steady-state acceptance gates passed.\n\n## Limits\nThis run did not simulate sudden bursts, tenant imbalance, or downstream outages.\nIt does not establish the maximum sustainable capacity of the service.\nQueue depth stayed below 400 events throughout this fixture run.\nThe source contains invented measurements for demonstrating evidence inspection.\n",
+          "document_id": "d_8cc37a5d93f91a4571732e51",
+          "sha256": "5580ee6a0aabfadc0c50fb84d2aa65897ceabcb15742d41600641907131d1779",
+          "title": "load-test.md",
+          "score": -6.502262061499562,
+          "label": "S1"
+        },
+        {
+          "id": "c_67bffb36dd9a39a5ce3da8bb",
+          "version_id": "v_135ee486897173e1a782578e",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Burst saturation incident review\n\nFictional engineering fixture. Incident IR-08, release 2.4.\n\nA burst of 4,000 events per second from one tenant saturated the dispatch queue.\nQueue depth reached 18,000 events within 90 seconds.\nThe gateway continued accepting events while dispatch p95 latency rose to 12 seconds.\nThe tenant concurrency budget was enforced, but the shared retry scheduler became congested.\nThe overload guard incorrectly used gateway latency instead of queue age.\n\n## Corrective decision\nPause the full rollout until the overload guard uses oldest-event age.\nKeep the 10 percent canary active with the burst traffic generator disabled.\nRepeat the burst test after the scheduler fairness patch and overload guard are deployed.\nPassing the steady-state load test does not satisfy the burst acceptance gate.\n",
+          "document_id": "d_84e88f2d8c9fcc0fc90891a5",
+          "sha256": "ea76bee1f97e85ac2a053416e148a6fcbbe67c9aa0855feaf6e77f1d6a54c9cf",
+          "title": "incident-review.md",
+          "score": -4.197275131723961,
+          "label": "S2"
+        },
+        {
+          "id": "c_f39aaffeb8b815c64ff8fffc",
+          "version_id": "v_c68bf1dcb16a05f3d6104d4d",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Rollout acceptance checklist\n\nFictional engineering fixture. Change CR-24.\n\nThe release begins at a 10 percent canary, then advances to 25, 50, and 100 percent.\nEach stage requires 20 minutes without a rollback trigger.\nPause rollout when oldest-event age exceeds 30 seconds for three consecutive minutes.\nRoll back when permanent rejection rate exceeds 0.5 percent over a five minute window.\nThe operator records both the trigger and the source dashboard before changing traffic.\n\n## Required evidence\nSteady-state load, burst saturation, and worker-outage tests must pass independently.\nA green gateway health probe alone cannot establish dispatch readiness.\nThe release approver needs a signed checklist and links to all three test reports.\nThe burst saturation gate is currently open, according to incident IR-08.\n",
+          "document_id": "d_c0eb6866701d7150654dc92f",
+          "sha256": "1b41aa1d61f790745cdc59b541a5226b739ab0723207d0a2cf8bf4886731d559",
+          "title": "rollout-checklist.md",
+          "score": -1.2127458981157255,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q03",
+      "question": "How many delivery attempts are allowed?",
+      "expected_sources": [
+        "retry-policy.md"
+      ],
+      "found_sources": [
+        "retry-policy.md",
+        "architecture.md",
+        "worker-outage.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.08,
+      "hits": [
+        {
+          "id": "c_d99f70f0bf6ebbbdffd1d80c",
+          "version_id": "v_b84d5acb9dc097df04ebca6f",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Retry and dead-letter policy\n\nFictional engineering fixture. Policy RP-03.\n\nRetry transient worker failures with exponential backoff starting at two seconds.\nApply jitter within 20 percent of the scheduled delay to avoid synchronized retries.\nAllow five delivery attempts; the fifth failure moves the event to the dead-letter ledger.\nHTTP 429 and 503 responses are retryable. HTTP 400 is a permanent rejection.\nUse a server Retry-After hint when present, bounded by the 15 minute retry ceiling.\n\n## Receipts\nThe worker must echo the original event key in its delivery receipt.\nA missing receipt is recorded as an ambiguous delivery outcome.\nOperators investigate ambiguous outcomes before manually redelivering an event.\nThe policy makes no promise that arbitrary downstream side effects happen exactly once.\n",
+          "document_id": "d_71d0c275501cffbcdd17fe7d",
+          "sha256": "13b1bb9d6819a7f5c69edc2049b77b1ad51f5c33f5fe1c86b1e07d1de393f927",
+          "title": "retry-policy.md",
+          "score": -3.3338932654119793,
+          "label": "S1"
+        },
+        {
+          "id": "c_cf46014b2dc39c110a67ad44",
+          "version_id": "v_3345297f78ecaaab01dc013e",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Aster Relay architecture\n\nFictional engineering fixture. Service: Aster Relay 2.4.\n\nRelay accepts events, writes them to a durable queue, and dispatches them to subscribed workers.\nThe gateway acknowledges an event only after the queue transaction commits.\nEach tenant has an independent concurrency budget of 32 active dispatches.\nWorker receipts include an event key, attempt number, and delivery timestamp.\nThe retry scheduler owns delayed delivery; the gateway does not sleep on worker failures.\nPayloads are limited to 256 KiB. Larger payloads are rejected before enqueueing.\n\n## Storage boundary\nThe event log is append-only. A delivery receipt is separate from the original event.\nThe queue keeps undelivered events for seven days, then moves them to an expired-events ledger.\nThe ledger is an operational record, not an automatic replay queue.\n",
+          "document_id": "d_4e03c430fc7f575c72fd9896",
+          "sha256": "6c8c3fdf149d17a7e159867c6d9afa24a091100afed50566f3cab224cf09fc82",
+          "title": "architecture.md",
+          "score": -1.4028802376602632,
+          "label": "S2"
+        },
+        {
+          "id": "c_1c790bf1303c06ef344099d6",
+          "version_id": "v_a126d124817e02170d70ca1b",
+          "start_line": 13,
+          "end_line": 16,
+          "body": "Ambiguous delivery outcomes were counted separately from confirmed worker receipts.\nThe test did not exercise concurrent scheduler recovery or cross-region failover.\nRecovery behavior should not be generalized beyond the stated scenario.\n",
+          "document_id": "d_5791b3736670556aca50606c",
+          "sha256": "877e51b7781cc198610e474d058404b6d25d8c09a238a8727ac21046e012e550",
+          "title": "worker-outage.md",
+          "score": -1.3024000000000002e-06,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q04",
+      "question": "When should the operator pause rollout?",
+      "expected_sources": [
+        "rollout-checklist.md",
+        "incident-review.md"
+      ],
+      "found_sources": [
+        "rollout-checklist.md",
+        "incident-review.md",
+        "worker-outage.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.084,
+      "hits": [
+        {
+          "id": "c_f39aaffeb8b815c64ff8fffc",
+          "version_id": "v_c68bf1dcb16a05f3d6104d4d",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Rollout acceptance checklist\n\nFictional engineering fixture. Change CR-24.\n\nThe release begins at a 10 percent canary, then advances to 25, 50, and 100 percent.\nEach stage requires 20 minutes without a rollback trigger.\nPause rollout when oldest-event age exceeds 30 seconds for three consecutive minutes.\nRoll back when permanent rejection rate exceeds 0.5 percent over a five minute window.\nThe operator records both the trigger and the source dashboard before changing traffic.\n\n## Required evidence\nSteady-state load, burst saturation, and worker-outage tests must pass independently.\nA green gateway health probe alone cannot establish dispatch readiness.\nThe release approver needs a signed checklist and links to all three test reports.\nThe burst saturation gate is currently open, according to incident IR-08.\n",
+          "document_id": "d_c0eb6866701d7150654dc92f",
+          "sha256": "1b41aa1d61f790745cdc59b541a5226b739ab0723207d0a2cf8bf4886731d559",
+          "title": "rollout-checklist.md",
+          "score": -3.883085782949181,
+          "label": "S1"
+        },
+        {
+          "id": "c_67bffb36dd9a39a5ce3da8bb",
+          "version_id": "v_135ee486897173e1a782578e",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Burst saturation incident review\n\nFictional engineering fixture. Incident IR-08, release 2.4.\n\nA burst of 4,000 events per second from one tenant saturated the dispatch queue.\nQueue depth reached 18,000 events within 90 seconds.\nThe gateway continued accepting events while dispatch p95 latency rose to 12 seconds.\nThe tenant concurrency budget was enforced, but the shared retry scheduler became congested.\nThe overload guard incorrectly used gateway latency instead of queue age.\n\n## Corrective decision\nPause the full rollout until the overload guard uses oldest-event age.\nKeep the 10 percent canary active with the burst traffic generator disabled.\nRepeat the burst test after the scheduler fairness patch and overload guard are deployed.\nPassing the steady-state load test does not satisfy the burst acceptance gate.\n",
+          "document_id": "d_84e88f2d8c9fcc0fc90891a5",
+          "sha256": "ea76bee1f97e85ac2a053416e148a6fcbbe67c9aa0855feaf6e77f1d6a54c9cf",
+          "title": "incident-review.md",
+          "score": -2.490248466796361,
+          "label": "S2"
+        },
+        {
+          "id": "c_1c790bf1303c06ef344099d6",
+          "version_id": "v_a126d124817e02170d70ca1b",
+          "start_line": 13,
+          "end_line": 16,
+          "body": "Ambiguous delivery outcomes were counted separately from confirmed worker receipts.\nThe test did not exercise concurrent scheduler recovery or cross-region failover.\nRecovery behavior should not be generalized beyond the stated scenario.\n",
+          "document_id": "d_5791b3736670556aca50606c",
+          "sha256": "877e51b7781cc198610e474d058404b6d25d8c09a238a8727ac21046e012e550",
+          "title": "worker-outage.md",
+          "score": -2.289434151820212,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q05",
+      "question": "Where are worker access tokens stored?",
+      "expected_sources": [
+        "security-review.md"
+      ],
+      "found_sources": [
+        "security-review.md",
+        "worker-outage.md",
+        "architecture.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.085,
+      "hits": [
+        {
+          "id": "c_4252d163ce0cb6e152734526",
+          "version_id": "v_06806be2786a8c5220145817",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Token isolation and retention review\n\nFictional engineering fixture. Review SR-11.\n\nWorker access tokens remain in the dispatch service's secret store.\nThe browser receives a job status identifier, never a worker token.\nThe event payload retention period is seven days.\nDelivery metadata is retained for 30 days for operational diagnosis.\nTenant names are omitted from aggregate latency reports.\n\n## Review notes\nRedact Authorization headers from error logs and trace exports.\nThe review checked the gateway-to-worker credential boundary using dummy tokens.\nIt did not evaluate a live identity provider or establish regulatory compliance.\nRotate a worker token without interrupting another tenant's delivery budget.\n",
+          "document_id": "d_ae1cdf10b27b6678416e7c5b",
+          "sha256": "bb47495805d2b1ea3b5a046875a34d69b12db5fe637aeee22c51e4a0065e73f4",
+          "title": "security-review.md",
+          "score": -7.08315096524878,
+          "label": "S1"
+        },
+        {
+          "id": "c_bb3fef76028b5bf7986225c4",
+          "version_id": "v_a126d124817e02170d70ca1b",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Worker outage recovery test\n\nFictional engineering fixture. Run WO-06.\n\nThe worker-outage test removed all workers for 120 seconds while the gateway accepted events.\nThe queue retained the accepted events and resumed dispatch after workers returned.\nThe oldest-event age returned below 30 seconds within four minutes of recovery.\nNo accepted event was absent from the queue's final accounting.\nThis test used a single retry scheduler and uniform tenant traffic.\n\n## Result\nThe worker-outage acceptance gate passed for this fixture configuration.\nAmbiguous delivery outcomes were counted separately from confirmed worker receipts.\nThe test did not exercise concurrent scheduler recovery or cross-region failover.\nRecovery behavior should not be generalized beyond the stated scenario.\n",
+          "document_id": "d_5791b3736670556aca50606c",
+          "sha256": "877e51b7781cc198610e474d058404b6d25d8c09a238a8727ac21046e012e550",
+          "title": "worker-outage.md",
+          "score": -1.8310209918298159e-06,
+          "label": "S2"
+        },
+        {
+          "id": "c_405d919f7dbcf4e7dee5097e",
+          "version_id": "v_3345297f78ecaaab01dc013e",
+          "start_line": 13,
+          "end_line": 21,
+          "body": "The event log is append-only. A delivery receipt is separate from the original event.\nThe queue keeps undelivered events for seven days, then moves them to an expired-events ledger.\nThe ledger is an operational record, not an automatic replay queue.\n\n## Routing\nHealth probes use a separate pool from dispatch workers.\nTrace identifiers cross the gateway, queue, scheduler, and worker boundaries.\nThe fictional deployment uses two gateway instances and four dispatch workers.\n",
+          "document_id": "d_4e03c430fc7f575c72fd9896",
+          "sha256": "6c8c3fdf149d17a7e159867c6d9afa24a091100afed50566f3cab224cf09fc82",
+          "title": "architecture.md",
+          "score": -1.5965256374334547e-06,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q06",
+      "question": "What happened during the worker outage recovery test?",
+      "expected_sources": [
+        "worker-outage.md"
+      ],
+      "found_sources": [
+        "worker-outage.md",
+        "retry-policy.md",
+        "release-notes.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.126,
+      "hits": [
+        {
+          "id": "c_1c790bf1303c06ef344099d6",
+          "version_id": "v_a126d124817e02170d70ca1b",
+          "start_line": 13,
+          "end_line": 16,
+          "body": "Ambiguous delivery outcomes were counted separately from confirmed worker receipts.\nThe test did not exercise concurrent scheduler recovery or cross-region failover.\nRecovery behavior should not be generalized beyond the stated scenario.\n",
+          "document_id": "d_5791b3736670556aca50606c",
+          "sha256": "877e51b7781cc198610e474d058404b6d25d8c09a238a8727ac21046e012e550",
+          "title": "worker-outage.md",
+          "score": -4.5477829112676025,
+          "label": "S1"
+        },
+        {
+          "id": "c_ca3af5645028d51f8e5ef977",
+          "version_id": "v_b84d5acb9dc097df04ebca6f",
+          "start_line": 13,
+          "end_line": 16,
+          "body": "A missing receipt is recorded as an ambiguous delivery outcome.\nOperators investigate ambiguous outcomes before manually redelivering an event.\nThe policy makes no promise that arbitrary downstream side effects happen exactly once.\n",
+          "document_id": "d_71d0c275501cffbcdd17fe7d",
+          "sha256": "13b1bb9d6819a7f5c69edc2049b77b1ad51f5c33f5fe1c86b1e07d1de393f927",
+          "title": "retry-policy.md",
+          "score": -2.289434151820212,
+          "label": "S2"
+        },
+        {
+          "id": "c_cea48f88957ab24ac62f5b71",
+          "version_id": "v_cb8582bc1804749e1f1dd1c7",
+          "start_line": 1,
+          "end_line": 15,
+          "body": "# Release 2.4 notes\n\nFictional engineering fixture. Aster Relay release 2.4.\n\nRelease 2.4 introduces per-tenant dispatch concurrency budgets and receipt tracing.\nThe gateway rejects payloads larger than 256 KiB before they reach the queue.\nWorker retry delays now honor bounded Retry-After hints.\nThe delivery ledger distinguishes confirmed receipts from ambiguous outcomes.\n\n## Known issue\nThe overload guard can remain green during dispatch queue saturation.\nIncident IR-08 tracks the oldest-event-age guard and scheduler fairness work.\nThe release remains at the 10 percent canary until the burst acceptance gate passes.\nRelease notes summarize changes; test reports contain the scenario-specific evidence.\n",
+          "document_id": "d_82200ce47fa528129da57d89",
+          "sha256": "0b0068751087525e085956deea8e8a7b830dd5d53c06893a211f70404124c2f6",
+          "title": "release-notes.md",
+          "score": -2.054370220509074,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q07",
+      "question": "What is the tenant concurrency budget?",
+      "expected_sources": [
+        "architecture.md"
+      ],
+      "found_sources": [
+        "release-notes.md",
+        "incident-review.md",
+        "architecture.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 0.063,
+      "hits": [
+        {
+          "id": "c_cea48f88957ab24ac62f5b71",
+          "version_id": "v_cb8582bc1804749e1f1dd1c7",
+          "start_line": 1,
+          "end_line": 15,
+          "body": "# Release 2.4 notes\n\nFictional engineering fixture. Aster Relay release 2.4.\n\nRelease 2.4 introduces per-tenant dispatch concurrency budgets and receipt tracing.\nThe gateway rejects payloads larger than 256 KiB before they reach the queue.\nWorker retry delays now honor bounded Retry-After hints.\nThe delivery ledger distinguishes confirmed receipts from ambiguous outcomes.\n\n## Known issue\nThe overload guard can remain green during dispatch queue saturation.\nIncident IR-08 tracks the oldest-event-age guard and scheduler fairness work.\nThe release remains at the 10 percent canary until the burst acceptance gate passes.\nRelease notes summarize changes; test reports contain the scenario-specific evidence.\n",
+          "document_id": "d_82200ce47fa528129da57d89",
+          "sha256": "0b0068751087525e085956deea8e8a7b830dd5d53c06893a211f70404124c2f6",
+          "title": "release-notes.md",
+          "score": -1.5056381902195852,
+          "label": "S1"
+        },
+        {
+          "id": "c_67bffb36dd9a39a5ce3da8bb",
+          "version_id": "v_135ee486897173e1a782578e",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Burst saturation incident review\n\nFictional engineering fixture. Incident IR-08, release 2.4.\n\nA burst of 4,000 events per second from one tenant saturated the dispatch queue.\nQueue depth reached 18,000 events within 90 seconds.\nThe gateway continued accepting events while dispatch p95 latency rose to 12 seconds.\nThe tenant concurrency budget was enforced, but the shared retry scheduler became congested.\nThe overload guard incorrectly used gateway latency instead of queue age.\n\n## Corrective decision\nPause the full rollout until the overload guard uses oldest-event age.\nKeep the 10 percent canary active with the burst traffic generator disabled.\nRepeat the burst test after the scheduler fairness patch and overload guard are deployed.\nPassing the steady-state load test does not satisfy the burst acceptance gate.\n",
+          "document_id": "d_84e88f2d8c9fcc0fc90891a5",
+          "sha256": "ea76bee1f97e85ac2a053416e148a6fcbbe67c9aa0855feaf6e77f1d6a54c9cf",
+          "title": "incident-review.md",
+          "score": -1.459758507352527,
+          "label": "S2"
+        },
+        {
+          "id": "c_cf46014b2dc39c110a67ad44",
+          "version_id": "v_3345297f78ecaaab01dc013e",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Aster Relay architecture\n\nFictional engineering fixture. Service: Aster Relay 2.4.\n\nRelay accepts events, writes them to a durable queue, and dispatches them to subscribed workers.\nThe gateway acknowledges an event only after the queue transaction commits.\nEach tenant has an independent concurrency budget of 32 active dispatches.\nWorker receipts include an event key, attempt number, and delivery timestamp.\nThe retry scheduler owns delayed delivery; the gateway does not sleep on worker failures.\nPayloads are limited to 256 KiB. Larger payloads are rejected before enqueueing.\n\n## Storage boundary\nThe event log is append-only. A delivery receipt is separate from the original event.\nThe queue keeps undelivered events for seven days, then moves them to an expired-events ledger.\nThe ledger is an operational record, not an automatic replay queue.\n",
+          "document_id": "d_4e03c430fc7f575c72fd9896",
+          "sha256": "6c8c3fdf149d17a7e159867c6d9afa24a091100afed50566f3cab224cf09fc82",
+          "title": "architecture.md",
+          "score": -1.3659515411255698,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q08",
+      "question": "Which retry status codes are transient failures?",
+      "expected_sources": [
+        "retry-policy.md"
+      ],
+      "found_sources": [
+        "retry-policy.md",
+        "security-review.md",
+        "architecture.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.084,
+      "hits": [
+        {
+          "id": "c_d99f70f0bf6ebbbdffd1d80c",
+          "version_id": "v_b84d5acb9dc097df04ebca6f",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Retry and dead-letter policy\n\nFictional engineering fixture. Policy RP-03.\n\nRetry transient worker failures with exponential backoff starting at two seconds.\nApply jitter within 20 percent of the scheduled delay to avoid synchronized retries.\nAllow five delivery attempts; the fifth failure moves the event to the dead-letter ledger.\nHTTP 429 and 503 responses are retryable. HTTP 400 is a permanent rejection.\nUse a server Retry-After hint when present, bounded by the 15 minute retry ceiling.\n\n## Receipts\nThe worker must echo the original event key in its delivery receipt.\nA missing receipt is recorded as an ambiguous delivery outcome.\nOperators investigate ambiguous outcomes before manually redelivering an event.\nThe policy makes no promise that arbitrary downstream side effects happen exactly once.\n",
+          "document_id": "d_71d0c275501cffbcdd17fe7d",
+          "sha256": "13b1bb9d6819a7f5c69edc2049b77b1ad51f5c33f5fe1c86b1e07d1de393f927",
+          "title": "retry-policy.md",
+          "score": -4.8407454867678865,
+          "label": "S1"
+        },
+        {
+          "id": "c_4252d163ce0cb6e152734526",
+          "version_id": "v_06806be2786a8c5220145817",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Token isolation and retention review\n\nFictional engineering fixture. Review SR-11.\n\nWorker access tokens remain in the dispatch service's secret store.\nThe browser receives a job status identifier, never a worker token.\nThe event payload retention period is seven days.\nDelivery metadata is retained for 30 days for operational diagnosis.\nTenant names are omitted from aggregate latency reports.\n\n## Review notes\nRedact Authorization headers from error logs and trace exports.\nThe review checked the gateway-to-worker credential boundary using dummy tokens.\nIt did not evaluate a live identity provider or establish regulatory compliance.\nRotate a worker token without interrupting another tenant's delivery budget.\n",
+          "document_id": "d_ae1cdf10b27b6678416e7c5b",
+          "sha256": "bb47495805d2b1ea3b5a046875a34d69b12db5fe637aeee22c51e4a0065e73f4",
+          "title": "security-review.md",
+          "score": -2.054368461161187,
+          "label": "S2"
+        },
+        {
+          "id": "c_cf46014b2dc39c110a67ad44",
+          "version_id": "v_3345297f78ecaaab01dc013e",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Aster Relay architecture\n\nFictional engineering fixture. Service: Aster Relay 2.4.\n\nRelay accepts events, writes them to a durable queue, and dispatches them to subscribed workers.\nThe gateway acknowledges an event only after the queue transaction commits.\nEach tenant has an independent concurrency budget of 32 active dispatches.\nWorker receipts include an event key, attempt number, and delivery timestamp.\nThe retry scheduler owns delayed delivery; the gateway does not sleep on worker failures.\nPayloads are limited to 256 KiB. Larger payloads are rejected before enqueueing.\n\n## Storage boundary\nThe event log is append-only. A delivery receipt is separate from the original event.\nThe queue keeps undelivered events for seven days, then moves them to an expired-events ledger.\nThe ledger is an operational record, not an automatic replay queue.\n",
+          "document_id": "d_4e03c430fc7f575c72fd9896",
+          "sha256": "6c8c3fdf149d17a7e159867c6d9afa24a091100afed50566f3cab224cf09fc82",
+          "title": "architecture.md",
+          "score": -1.7856076956701383,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q09",
+      "question": "What is new in release 2.4?",
+      "expected_sources": [
+        "release-notes.md"
+      ],
+      "found_sources": [
+        "release-notes.md",
+        "incident-review.md",
+        "load-test.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.074,
+      "hits": [
+        {
+          "id": "c_cea48f88957ab24ac62f5b71",
+          "version_id": "v_cb8582bc1804749e1f1dd1c7",
+          "start_line": 1,
+          "end_line": 15,
+          "body": "# Release 2.4 notes\n\nFictional engineering fixture. Aster Relay release 2.4.\n\nRelease 2.4 introduces per-tenant dispatch concurrency budgets and receipt tracing.\nThe gateway rejects payloads larger than 256 KiB before they reach the queue.\nWorker retry delays now honor bounded Retry-After hints.\nThe delivery ledger distinguishes confirmed receipts from ambiguous outcomes.\n\n## Known issue\nThe overload guard can remain green during dispatch queue saturation.\nIncident IR-08 tracks the oldest-event-age guard and scheduler fairness work.\nThe release remains at the 10 percent canary until the burst acceptance gate passes.\nRelease notes summarize changes; test reports contain the scenario-specific evidence.\n",
+          "document_id": "d_82200ce47fa528129da57d89",
+          "sha256": "0b0068751087525e085956deea8e8a7b830dd5d53c06893a211f70404124c2f6",
+          "title": "release-notes.md",
+          "score": -3.865005545222073,
+          "label": "S1"
+        },
+        {
+          "id": "c_67bffb36dd9a39a5ce3da8bb",
+          "version_id": "v_135ee486897173e1a782578e",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Burst saturation incident review\n\nFictional engineering fixture. Incident IR-08, release 2.4.\n\nA burst of 4,000 events per second from one tenant saturated the dispatch queue.\nQueue depth reached 18,000 events within 90 seconds.\nThe gateway continued accepting events while dispatch p95 latency rose to 12 seconds.\nThe tenant concurrency budget was enforced, but the shared retry scheduler became congested.\nThe overload guard incorrectly used gateway latency instead of queue age.\n\n## Corrective decision\nPause the full rollout until the overload guard uses oldest-event age.\nKeep the 10 percent canary active with the burst traffic generator disabled.\nRepeat the burst test after the scheduler fairness patch and overload guard are deployed.\nPassing the steady-state load test does not satisfy the burst acceptance gate.\n",
+          "document_id": "d_84e88f2d8c9fcc0fc90891a5",
+          "sha256": "ea76bee1f97e85ac2a053416e148a6fcbbe67c9aa0855feaf6e77f1d6a54c9cf",
+          "title": "incident-review.md",
+          "score": -2.4030802024199245,
+          "label": "S2"
+        },
+        {
+          "id": "c_775914183488c4457fdc7e07",
+          "version_id": "v_872ba477ba2eb3c6eedcd7cd",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Steady-state load test\n\nFictional engineering fixture. Run LT-24, release 2.4.\n\nThe steady-state test delivered 600 events per second for 30 minutes.\nThe workload used 16 tenants, uniform 8 KiB payloads, and a 20 ms worker response delay.\nObserved gateway p95 latency was 43 ms; dispatch p95 latency was 118 ms.\nThe acceptance limits were 75 ms for gateway p95 and 200 ms for dispatch p95.\nThe steady-state acceptance gates passed.\n\n## Limits\nThis run did not simulate sudden bursts, tenant imbalance, or downstream outages.\nIt does not establish the maximum sustainable capacity of the service.\nQueue depth stayed below 400 events throughout this fixture run.\nThe source contains invented measurements for demonstrating evidence inspection.\n",
+          "document_id": "d_8cc37a5d93f91a4571732e51",
+          "sha256": "5580ee6a0aabfadc0c50fb84d2aa65897ceabcb15742d41600641907131d1779",
+          "title": "load-test.md",
+          "score": -2.0980392054944232,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "How long is delivery metadata retained?",
+      "expected_sources": [
+        "security-review.md"
+      ],
+      "found_sources": [
+        "security-review.md",
+        "worker-outage.md",
+        "retry-policy.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.074,
+      "hits": [
+        {
+          "id": "c_4252d163ce0cb6e152734526",
+          "version_id": "v_06806be2786a8c5220145817",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Token isolation and retention review\n\nFictional engineering fixture. Review SR-11.\n\nWorker access tokens remain in the dispatch service's secret store.\nThe browser receives a job status identifier, never a worker token.\nThe event payload retention period is seven days.\nDelivery metadata is retained for 30 days for operational diagnosis.\nTenant names are omitted from aggregate latency reports.\n\n## Review notes\nRedact Authorization headers from error logs and trace exports.\nThe review checked the gateway-to-worker credential boundary using dummy tokens.\nIt did not evaluate a live identity provider or establish regulatory compliance.\nRotate a worker token without interrupting another tenant's delivery budget.\n",
+          "document_id": "d_ae1cdf10b27b6678416e7c5b",
+          "sha256": "bb47495805d2b1ea3b5a046875a34d69b12db5fe637aeee22c51e4a0065e73f4",
+          "title": "security-review.md",
+          "score": -3.6007115239757788,
+          "label": "S1"
+        },
+        {
+          "id": "c_bb3fef76028b5bf7986225c4",
+          "version_id": "v_a126d124817e02170d70ca1b",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Worker outage recovery test\n\nFictional engineering fixture. Run WO-06.\n\nThe worker-outage test removed all workers for 120 seconds while the gateway accepted events.\nThe queue retained the accepted events and resumed dispatch after workers returned.\nThe oldest-event age returned below 30 seconds within four minutes of recovery.\nNo accepted event was absent from the queue's final accounting.\nThis test used a single retry scheduler and uniform tenant traffic.\n\n## Result\nThe worker-outage acceptance gate passed for this fixture configuration.\nAmbiguous delivery outcomes were counted separately from confirmed worker receipts.\nThe test did not exercise concurrent scheduler recovery or cross-region failover.\nRecovery behavior should not be generalized beyond the stated scenario.\n",
+          "document_id": "d_5791b3736670556aca50606c",
+          "sha256": "877e51b7781cc198610e474d058404b6d25d8c09a238a8727ac21046e012e550",
+          "title": "worker-outage.md",
+          "score": -1.4805155810762747,
+          "label": "S2"
+        },
+        {
+          "id": "c_d99f70f0bf6ebbbdffd1d80c",
+          "version_id": "v_b84d5acb9dc097df04ebca6f",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Retry and dead-letter policy\n\nFictional engineering fixture. Policy RP-03.\n\nRetry transient worker failures with exponential backoff starting at two seconds.\nApply jitter within 20 percent of the scheduled delay to avoid synchronized retries.\nAllow five delivery attempts; the fifth failure moves the event to the dead-letter ledger.\nHTTP 429 and 503 responses are retryable. HTTP 400 is a permanent rejection.\nUse a server Retry-After hint when present, bounded by the 15 minute retry ceiling.\n\n## Receipts\nThe worker must echo the original event key in its delivery receipt.\nA missing receipt is recorded as an ambiguous delivery outcome.\nOperators investigate ambiguous outcomes before manually redelivering an event.\nThe policy makes no promise that arbitrary downstream side effects happen exactly once.\n",
+          "document_id": "d_71d0c275501cffbcdd17fe7d",
+          "sha256": "13b1bb9d6819a7f5c69edc2049b77b1ad51f5c33f5fe1c86b1e07d1de393f927",
+          "title": "retry-policy.md",
+          "score": -1.4039323904794757e-06,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q11",
+      "question": "Why is a healthy gateway insufficient for readiness?",
+      "expected_sources": [
+        "rollout-checklist.md",
+        "incident-review.md"
+      ],
+      "found_sources": [
+        "rollout-checklist.md",
+        "architecture.md",
+        "security-review.md"
+      ],
+      "recall": 0.5,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.083,
+      "hits": [
+        {
+          "id": "c_abae7dc1fee59d67ced5d8bd",
+          "version_id": "v_c68bf1dcb16a05f3d6104d4d",
+          "start_line": 13,
+          "end_line": 16,
+          "body": "A green gateway health probe alone cannot establish dispatch readiness.\nThe release approver needs a signed checklist and links to all three test reports.\nThe burst saturation gate is currently open, according to incident IR-08.\n",
+          "document_id": "d_c0eb6866701d7150654dc92f",
+          "sha256": "1b41aa1d61f790745cdc59b541a5226b739ab0723207d0a2cf8bf4886731d559",
+          "title": "rollout-checklist.md",
+          "score": -2.2306979894466674,
+          "label": "S1"
+        },
+        {
+          "id": "c_405d919f7dbcf4e7dee5097e",
+          "version_id": "v_3345297f78ecaaab01dc013e",
+          "start_line": 13,
+          "end_line": 21,
+          "body": "The event log is append-only. A delivery receipt is separate from the original event.\nThe queue keeps undelivered events for seven days, then moves them to an expired-events ledger.\nThe ledger is an operational record, not an automatic replay queue.\n\n## Routing\nHealth probes use a separate pool from dispatch workers.\nTrace identifiers cross the gateway, queue, scheduler, and worker boundaries.\nThe fictional deployment uses two gateway instances and four dispatch workers.\n",
+          "document_id": "d_4e03c430fc7f575c72fd9896",
+          "sha256": "6c8c3fdf149d17a7e159867c6d9afa24a091100afed50566f3cab224cf09fc82",
+          "title": "architecture.md",
+          "score": -1.4039669828754466e-06,
+          "label": "S2"
+        },
+        {
+          "id": "c_e1e403700eab04654a94bba4",
+          "version_id": "v_06806be2786a8c5220145817",
+          "start_line": 13,
+          "end_line": 16,
+          "body": "The review checked the gateway-to-worker credential boundary using dummy tokens.\nIt did not evaluate a live identity provider or establish regulatory compliance.\nRotate a worker token without interrupting another tenant's delivery budget.\n",
+          "document_id": "d_ae1cdf10b27b6678416e7c5b",
+          "sha256": "bb47495805d2b1ea3b5a046875a34d69b12db5fe637aeee22c51e4a0065e73f4",
+          "title": "security-review.md",
+          "score": -1.2771775675796836e-06,
+          "label": "S3"
+        }
+      ]
+    },
+    {
+      "id": "Q12",
+      "question": "Did the load test cover downstream outages?",
+      "expected_sources": [
+        "load-test.md"
+      ],
+      "found_sources": [
+        "load-test.md",
+        "retry-policy.md",
+        "worker-outage.md"
+      ],
+      "recall": 1.0,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 0.095,
+      "hits": [
+        {
+          "id": "c_775914183488c4457fdc7e07",
+          "version_id": "v_872ba477ba2eb3c6eedcd7cd",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Steady-state load test\n\nFictional engineering fixture. Run LT-24, release 2.4.\n\nThe steady-state test delivered 600 events per second for 30 minutes.\nThe workload used 16 tenants, uniform 8 KiB payloads, and a 20 ms worker response delay.\nObserved gateway p95 latency was 43 ms; dispatch p95 latency was 118 ms.\nThe acceptance limits were 75 ms for gateway p95 and 200 ms for dispatch p95.\nThe steady-state acceptance gates passed.\n\n## Limits\nThis run did not simulate sudden bursts, tenant imbalance, or downstream outages.\nIt does not establish the maximum sustainable capacity of the service.\nQueue depth stayed below 400 events throughout this fixture run.\nThe source contains invented measurements for demonstrating evidence inspection.\n",
+          "document_id": "d_8cc37a5d93f91a4571732e51",
+          "sha256": "5580ee6a0aabfadc0c50fb84d2aa65897ceabcb15742d41600641907131d1779",
+          "title": "load-test.md",
+          "score": -3.020153391839157,
+          "label": "S1"
+        },
+        {
+          "id": "c_ca3af5645028d51f8e5ef977",
+          "version_id": "v_b84d5acb9dc097df04ebca6f",
+          "start_line": 13,
+          "end_line": 16,
+          "body": "A missing receipt is recorded as an ambiguous delivery outcome.\nOperators investigate ambiguous outcomes before manually redelivering an event.\nThe policy makes no promise that arbitrary downstream side effects happen exactly once.\n",
+          "document_id": "d_71d0c275501cffbcdd17fe7d",
+          "sha256": "13b1bb9d6819a7f5c69edc2049b77b1ad51f5c33f5fe1c86b1e07d1de393f927",
+          "title": "retry-policy.md",
+          "score": -1.7581445561543987,
+          "label": "S2"
+        },
+        {
+          "id": "c_bb3fef76028b5bf7986225c4",
+          "version_id": "v_a126d124817e02170d70ca1b",
+          "start_line": 1,
+          "end_line": 16,
+          "body": "# Worker outage recovery test\n\nFictional engineering fixture. Run WO-06.\n\nThe worker-outage test removed all workers for 120 seconds while the gateway accepted events.\nThe queue retained the accepted events and resumed dispatch after workers returned.\nThe oldest-event age returned below 30 seconds within four minutes of recovery.\nNo accepted event was absent from the queue's final accounting.\nThis test used a single retry scheduler and uniform tenant traffic.\n\n## Result\nThe worker-outage acceptance gate passed for this fixture configuration.\nAmbiguous delivery outcomes were counted separately from confirmed worker receipts.\nThe test did not exercise concurrent scheduler recovery or cross-region failover.\nRecovery behavior should not be generalized beyond the stated scenario.\n",
+          "document_id": "d_5791b3736670556aca50606c",
+          "sha256": "877e51b7781cc198610e474d058404b6d25d8c09a238a8727ac21046e012e550",
+          "title": "worker-outage.md",
+          "score": -1.6996315937376036,
+          "label": "S3"
+        }
+      ]
+    }
+  ],
+  "recall": 0.9583333333333334,
+  "mrr": 0.9444444444444445,
+  "mean_latency_ms": 0.10558333333333332,
+  "id": "r_5fc3a285739341e6a36b735b410cc7dd",
+  "created_at": 1791733864.0700848
+}
