@@ -1,6 +1,6 @@
 # Verification
 
-Local checks were performed on **12 October 2026**. The selected release checkout was installed from its frozen lockfiles into fresh environments, using Python 3.11.15 and Node 22.23.2. Earlier development checks used Python 3.13.15. The included GitHub workflow has not run remotely yet.
+Local checks were performed on **12 October 2026**. The selected release checkout was installed from its frozen lockfiles into fresh environments, using Python 3.11.15 and Node 22.23.2. Earlier development checks used Python 3.13.15. The first full-source [GitHub check run](https://github.com/shayanxcyber/evidence-atlas/actions/runs/38162448596) passed all six jobs: backend tests and Ruff on Windows/Linux with Python 3.11/3.13, the interface suite and production build, and the film lint/types/bundle.
 
 ## Backend: 21 tests
 
@@ -50,4 +50,4 @@ The release checkout was checked separately through its documented CLI and a loo
 
 The source quickstart uses frozen lockfiles. The container installs the Python package's declared dependency ranges; it is not advertised as a fully locked or bit-for-bit reproducible image.
 
-The local and container results do not claim remote CI, production throughput, multiuser safety or general retrieval accuracy. Runtime databases and browser test fixtures are excluded from the source export.
+The local, container and remote checks do not establish production throughput, multiuser safety or general retrieval accuracy. Runtime databases and browser test fixtures are excluded from the source export.

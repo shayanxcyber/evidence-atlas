@@ -2,13 +2,15 @@
 
 # Evidence Atlas
 
+[![Checks](https://github.com/shayanxcyber/evidence-atlas/actions/workflows/checks.yml/badge.svg)](https://github.com/shayanxcyber/evidence-atlas/actions/workflows/checks.yml)
+
 **An investigation workspace for engineering evidence that changes, conflicts, and needs checking.**
 
 A passing test and a failed rollout can both be real. Atlas keeps their conditions, source versions and line references in view, so a conclusion has an inspectable trail behind it.
 
-[Watch the film](docs/media/evidence-atlas.mp4) · [Run the app](#run-locally) · [Engineering case study](docs/CASE-STUDY.md) · [Architecture](docs/ARCHITECTURE.md)
+[Watch the film](https://github.com/user-attachments/assets/4d801082-b1e7-4670-8997-907a6676d8ac) · [Download MP4](https://github.com/shayanxcyber/evidence-atlas/releases/download/v0.1.0/evidence-atlas.mp4) · [Run the app](#run-locally) · [Engineering case study](docs/CASE-STUDY.md) · [Architecture](docs/ARCHITECTURE.md)
 
-[![A question becomes a citation, retained versions are compared, and retrieval misses stay visible.](docs/media/evidence-atlas-preview.gif)](docs/media/evidence-atlas.mp4)
+https://github.com/user-attachments/assets/4d801082-b1e7-4670-8997-907a6676d8ac
 
 *32-second component film · 1080p / 60 fps · original score. The film renders the app’s React components with fictional demonstration props. [Editable motion project →](videos/evidence-atlas-film/README.md)*
 
