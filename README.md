@@ -1,18 +1,16 @@
-![Evidence Atlas — Follow the source.](docs/images/atlas-cover.svg)
-
 # Evidence Atlas
 
 [![Checks](https://github.com/shayanxcyber/evidence-atlas/actions/workflows/checks.yml/badge.svg)](https://github.com/shayanxcyber/evidence-atlas/actions/workflows/checks.yml)
 
-**An investigation workspace for engineering evidence that changes, conflicts, and needs checking.**
+**Keep source versions, citations and conflicting evidence together while you investigate.**
 
-A passing test and a failed rollout can both be real. Atlas keeps their conditions, source versions and line references in view, so a conclusion has an inspectable trail behind it.
+I built Atlas to keep track of which source text supports a conclusion, especially when documents change or disagree. You can compare revisions, save evidence on either side, and return to the exact passages you used.
 
-[Watch the film](https://github.com/user-attachments/assets/4d801082-b1e7-4670-8997-907a6676d8ac) · [Download MP4](https://github.com/shayanxcyber/evidence-atlas/releases/download/v0.1.0/evidence-atlas.mp4) · [Run the app](#run-locally) · [Engineering case study](docs/CASE-STUDY.md) · [Architecture](docs/ARCHITECTURE.md)
+[Run locally](#run-locally) · [Case study](docs/CASE-STUDY.md) · [Architecture](docs/ARCHITECTURE.md)
+
+## Demo
 
 https://github.com/user-attachments/assets/4d801082-b1e7-4670-8997-907a6676d8ac
-
-*32-second component film · 1080p / 60 fps · original score. The film renders the app’s React components with fictional demonstration props. [Editable motion project →](videos/evidence-atlas-film/README.md)*
 
 ## One investigation, end to end
 
@@ -28,20 +26,7 @@ The interesting question is what the passing test actually supports. The opening
 
 Everything needed for that journey is included. The default mode selects verbatim source excerpts and runs locally without an account or provider connection.
 
-<table>
-<tr>
-<td width="50%"><a href="docs/images/workbench.png"><img src="docs/images/workbench.png" alt="Case dossier comparing steady load and burst conditions" /></a><br /><b>Start with the conditions.</b><br />Traffic, latency and queue depth lead into the actual sources.</td>
-<td width="50%"><a href="docs/images/evidence-card.png"><img src="docs/images/evidence-card.png" alt="Evidence card with supporting and contradictory source links" /></a><br /><b>Keep disagreement visible.</b><br />A conclusion can retain evidence on both sides.</td>
-</tr>
-<tr>
-<td><a href="docs/images/source-inspector.png"><img src="docs/images/source-inspector.png" alt="Two retained source versions with changed rows and independent line numbers" /></a><br /><b>Inspect the change.</b><br />Separate hashes, line numbers and changed rows preserve the earlier record.</td>
-<td><a href="docs/images/evaluation.png"><img src="docs/images/evaluation.png" alt="Retrieval evaluation showing individual cases and a missed source" /></a><br /><b>Inspect the miss.</b><br />Per-question results explain what an aggregate score hides.</td>
-</tr>
-</table>
-
-*Screens show the fictional demo plus an operator note imported in two versions and an additional saved card. The original eight-source evaluation is labelled as an earlier corpus after those imports.*
-
-## Decisions that shape the system
+## Design choices
 
 | Decision | What it makes possible |
 | --- | --- |
@@ -50,7 +35,6 @@ Everything needed for that journey is included. The default mode selects verbati
 | Store evidence relationships explicitly | “Supports” and “contradicts” remain authored judgments linked to inspectable chunks. |
 | Use a transparent lexical baseline | FTS5/BM25 retrieval is local, inexpensive and reproducible; its vocabulary gaps are measurable. |
 | Preserve per-case evaluation results | Recall and reciprocal rank can be checked against returned document names, ranks and source passages. |
-| Share presentation components with the film | Citation, document, comparison and assay views are rendered from component source rather than browser screenshots. |
 
 The [case study](docs/CASE-STUDY.md) explains the problem, invariants, interaction design and tradeoffs. The [architecture](docs/ARCHITECTURE.md) covers identity, import transactions, retrieval snapshots, cancellation and storage boundaries.
 
@@ -95,7 +79,7 @@ The CLI seeds an empty database; an existing database is evaluated against its a
 
 ## Built across the stack
 
-**Python / FastAPI / SQLite FTS5** handle import, version retention, retrieval, evidence cards and evaluation receipts. **React / TypeScript / Vite** provide the investigation workspace. **Radix, cmdk, Motion and React Flow** support keyboard controls, source navigation and interaction; adapted component sources and fonts are credited in [THIRD-PARTY.md](THIRD-PARTY.md). **Remotion** renders the editable component film.
+**Python / FastAPI / SQLite FTS5** handle import, version retention, retrieval, evidence cards and evaluation receipts. **React / TypeScript / Vite** provide the investigation workspace. **Radix, cmdk, Motion and React Flow** support keyboard controls, source navigation and interaction; adapted component sources and fonts are credited in [THIRD-PARTY.md](THIRD-PARTY.md).
 
 Twenty-one backend tests cover storage invariants, source retention, query handling, evaluation snapshots and API behavior. Twelve interface tests cover cited-version requests, cancellation, recovery, keyboard interaction, custom selection and safe version comparison. [Verification details →](docs/VERIFICATION.md)
 
@@ -146,15 +130,4 @@ There is no authentication, workspace isolation, deletion workflow, semantic rer
 
 The next useful experiment is retrieval beyond the authored fixture: expand questions and source vocabulary, then compare the current lexical baseline with reranking while preserving the same inspectable receipts.
 
-## Explore the implementation
-
-| Read | Purpose |
-| --- | --- |
-| [Engineering case study](docs/CASE-STUDY.md) | Problem, design decisions, failure modes and the complete investigation |
-| [Architecture](docs/ARCHITECTURE.md) | Storage, identity, transactions, retrieval and request lifetime |
-| [Design](docs/DESIGN.md) | Case-file direction, interaction patterns and applied resources |
-| [API](docs/API.md) | Routes, payloads and local provider configuration |
-| [Verification](docs/VERIFICATION.md) | Performed checks, fixture results and their scope |
-| [Motion project](videos/evidence-atlas-film/README.md) | Editable scenes, shared components, score generator and export commands |
-
-All included engineering documents, evaluation cases and film demonstration props are fictional.
+The included documents and evaluation cases are fictional.
